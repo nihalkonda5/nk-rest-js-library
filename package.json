@@ -1,0 +1,18 @@
+{
+  "name": "nk-rest-js-library",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc --build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/axios": "^0.14.0",
+    "axios": "^0.21.0",
+    "nk-constants": "github:nihalkonda5/nk-constants#master"
+  }
+}
