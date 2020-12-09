@@ -2,11 +2,16 @@
   "name": "nk-rest-js-library",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "scripts": {
     "build": "tsc --build",
+    "git": "tsc --build && git rm -r --cached . && git add . && git commit -am 'Quick Commit'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files": [
+    "lib"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -14,5 +19,25 @@
     "@types/axios": "^0.14.0",
     "axios": "^0.21.0",
     "nk-constants": "github:nihalkonda5/nk-constants#master"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.2"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "esmodules": true
+          }
+        }
+      ],
+      "@babel/preset-react",
+      "@babel/preset-flow"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties"
+    ]
   }
 }

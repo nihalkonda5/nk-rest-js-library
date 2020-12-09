@@ -1,1 +1,0 @@
-export * as REST from './src/rest';
