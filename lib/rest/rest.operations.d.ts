@@ -1,3 +1,4 @@
+declare const setAccessTokenFetcher: (af: any) => void;
 declare const postOp: (url: string, data: any, refresh?: boolean) => Promise<import("axios").AxiosResponse<any> | {
     data: {};
 }>;
@@ -10,4 +11,4 @@ declare const putOp: (url: string, data: any, refresh?: boolean) => Promise<impo
 declare const deleteOp: (url: string, refresh?: boolean) => Promise<import("axios").AxiosResponse<any> | {
     data: {};
 }>;
-export { postOp, getOp, putOp, deleteOp };
+export { postOp, getOp, putOp, deleteOp, setAccessTokenFetcher };
