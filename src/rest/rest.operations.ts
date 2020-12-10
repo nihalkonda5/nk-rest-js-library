@@ -69,7 +69,7 @@ const httpOp = async function (
 
             if (name === '401') {
                 console.log('name', name, message);
-                throwError(name, message);
+                throwError('401', error.response.data.errorCode);
             }
 
             if (name === '403') {
