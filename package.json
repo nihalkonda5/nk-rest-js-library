@@ -18,7 +18,7 @@
   "dependencies": {
     "@types/axios": "^0.14.0",
     "axios": "^0.21.0",
-    "nk-constants": "github:nihalkonda5/nk-constants#master"
+    "nk-constants": "nihalkonda5/nk-constants"
   },
   "devDependencies": {
     "typescript": "^4.0.2"
