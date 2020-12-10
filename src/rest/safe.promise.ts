@@ -1,7 +1,10 @@
+import * as Constants from "nk-constants";
+
 let handlers = {
-    handleEmptyToken: () => { },
-    handleExpiredRefreshToken: () => { },
-    handleNetworkError: () => { }
+    handleTokenError: () => { },
+    handleNotFoundError: () => { },
+    handleNetworkError: () => { },
+    handleConfirmationNeededError: () => { }
 }
 
 export function setHandlers(value: typeof handlers) {
@@ -17,19 +20,23 @@ export default function safePromise<T>(promise: Promise<T>): Promise<T> {
             resolve(result);
         }).catch((error) => {
             console.log('safe.promise', 'error', error, '|', error.message, '|', error.status);
-            // if(error.message === Strings.ERROR.TOKEN_EMPTY){
-            //     console.log('Sign In Required','');
-            //     handlers.handleEmptyToken();
-            // }else if(error.message === Strings.ERROR.REFRESH_TOKEN_EXPIRED){
-            //     console.log('Sign In Required','');
-            //     handlers.handleExpiredRefreshToken();
-            // }else if(error.message === Strings.ERROR.NETWORK_ERROR){
-            //     console.log('safe.promise','redirect');
-            //     console.log('/oops');
-            //     handlers.handleNetworkError();
-            // }else{
-            //     reject(error);
-            // }
+            if ([
+                Constants.API.CUSTOM_ERROR.UNAUTHORIZED,
+                Constants.API.CUSTOM_ERROR.ACCESS_TOKEN_EXPIRED,
+                Constants.API.CUSTOM_ERROR.AUTHENTICATION_REQUIRED,
+                Constants.API.CUSTOM_ERROR.REFRESH_TOKEN_EXPIRED,
+                Constants.API.CUSTOM_ERROR.TOKEN_EXPIRED
+            ].indexOf(error.message) !== -1) {
+                handlers.handleTokenError();
+            } else if (error.message === Constants.API.CUSTOM_ERROR.USER_UNCONFIRMED) {
+                handlers.handleConfirmationNeededError();
+            } else if (error.message === Constants.API.CUSTOM_ERROR.NOT_FOUND) {
+                handlers.handleNotFoundError();
+            } else if (error.message === 'Network Error') {
+                handlers.handleNetworkError();
+            } else {
+                reject(error);
+            }
         })
     })
 }
