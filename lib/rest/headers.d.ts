@@ -9,7 +9,10 @@ interface HeaderData {
     isConfirmed: boolean;
 }
 declare class Headers {
+    private static instance;
     data: HeaderData;
+    private constructor();
+    static getInstance(): Headers;
     backupManager: (data: HeaderData) => void;
     setBackupManager(bm: (data: HeaderData) => void): void;
     isUserLoggedIn(): boolean;
