@@ -7,6 +7,7 @@ import Headers from './headers';
 import * as Constants from 'nk-constants';
 
 const restOptions = function (refresh: boolean = false) {
+    console.log(Headers.data);
     let auth = 'Access ' + Headers.getAccessToken().value;
     if (refresh)
         auth = 'Refresh ' + Headers.getRefreshToken().value;
